@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>双色球随机摇号器~筱</title>
+  <style>
+    .ball {
+      width: 50px;
+      height: 50px;
+	  line-height: 50px;
+      border-radius: 25px;
+      display: inline-block;
+      text-align: center;
+      font-size: 20px;
+      margin: 20px;
+	  paddingt
+    }
+    .red {
+      background-color: red;
+      color: white;
+    }
+    .blue {
+      background-color: blue;
+      color: white;
+    }
+	button {
+	      font-size: 20px;
+	      padding: 20px 40px;
+	      border-radius: 5px;
+	      background-color: #00bfff;
+	      color: #fff;
+	      border: none;
+	      cursor: pointer;
+	      margin-bottom: 15px;
+	    }
+  </style>
+</head>
+<body>
+  <h1>双色球随机摇号器~筱</h1>
+  <button id="generate">生成双色球号码</button>
+  <div id="result"></div>
+
+  <script>
+    const generateBtn = document.getElementById("generate");
+    const resultDiv = document.getElementById("result");
+
+    generateBtn.addEventListener("click", function() {
+      resultDiv.innerHTML = "";
+      let redBallNumbers = [];
+      while (redBallNumbers.length < 6) {
+        let number = Math.floor(Math.random() * 33) + 1;
+        if (redBallNumbers.indexOf(number) === -1) {
+          redBallNumbers.push(number);
+        }
+      }
+      redBallNumbers.sort((a, b) => a - b);
+
+      let blueBallNumber = Math.floor(Math.random() * 16) + 1;
+
+      redBallNumbers.forEach(function(number) {
+        let ball = document.createElement("div");
+        ball.classList.add("ball");
+        ball.classList.add("red");
+        ball.innerHTML = number;
+        resultDiv.appendChild(ball);
+      });
+
+      let blueBall = document.createElement("div");
+      blueBall.classList.add("ball");
+      blueBall.classList.add("blue");
+      blueBall.innerHTML = blueBallNumber;
+      resultDiv.appendChild(blueBall);
+    });
+  </script>
+</body>
+</html>
